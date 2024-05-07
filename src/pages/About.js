@@ -1,41 +1,74 @@
 import React from "react";
-import "../App.css";
+import '../App.css'
 
 const About = () => {
   return (
     <div>
-      <div>
-        <div className="card mb-3 mt-3">
-          <img src="https://images.pexels.com/photos/39853/woman-girl-freedom-happy-39853.jpeg?auto=compress&cs=tinysrgb&w=1000" className="card-img-top" alt="..." />
-          <div className="card-body">
-            <h5 className="card-title">Card title</h5>
-            <p className="card-text">
-              This is a wider card with supporting text below as a natural
-              lead-in to additional content. This content is a little bit
-              longer.
-            </p>
-            <p className="card-text">
-              <small className="text-body-secondary">
-                Last updated 3 mins ago
-              </small>
-            </p>
-          </div>
+      <div className="div-about">
+        <div className="about-section">
+          <h1>About Us Page</h1>
+          <p>Some text about who we are and what we do.</p>
+          <p>
+            Resize the browser window to see that this page is responsive by the
+            way.
+          </p>
         </div>
-        <div className="card">
-          <div className="card-body">
-            <h5 className="card-title">Card title</h5>
-            <p className="card-text">
-              This is a wider card with supporting text below as a natural
-              lead-in to additional content. This content is a little bit
-              longer.
-            </p>
-            <p className="card-text">
-              <small className="text-body-secondary">
-                Last updated 3 mins ago
-              </small>
-            </p>
+        <h2 style={{ textAlign: "center" }}>Our Team</h2>
+        <div className="row">
+          <div className="column">
+            <div className="card">
+              <img
+                src="https://images.pexels.com/photos/20529826/pexels-photo-20529826/free-photo-of-a-woman-in-a-lace-dress-and-earrings-posing-for-a-photo.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
+                alt="Jane"
+                style={{ width: "100%" }}
+              />
+              <div className="container">
+                <h2>Rajja Lemnari</h2>
+                <p className="title">CEO &amp; Founder</p>
+                <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+                <p>jane@example.com</p>
+                <p>
+                  <button className="button">Contact</button>
+                </p>
+              </div>
+            </div>
           </div>
-          <img src="https://images.pexels.com/photos/103123/pexels-photo-103123.jpeg?auto=compress&cs=tinysrgb&w=1000" className="card-img-bottom" alt="..." />
+          <div className="column">
+            <div className="card">
+              <img
+                src="https://images.pexels.com/photos/2860902/pexels-photo-2860902.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
+                alt="Mike"
+                style={{ width: "100%" }}
+              />
+              <div className="container">
+                <h2>Ayaka Kato </h2>
+                <p className="title">Art Director</p>
+                <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+                <p>mike@example.com</p>
+                <p>
+                  <button className="button">Contact</button>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="column">
+            <div className="card">
+              <img
+                src="https://images.pexels.com/photos/3596953/pexels-photo-3596953.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
+                alt="John"
+                style={{ width: "100%" }}
+              />
+              <div className="container">
+                <h2>Sobhan Joodi</h2>
+                <p className="title">Designer</p>
+                <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+                <p>john@example.com</p>
+                <p>
+                  <button className="button">Contact</button>
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

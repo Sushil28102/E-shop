@@ -1,12 +1,17 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Header = () => {
+
+const itemSelector=useSelector((state)=>state.cart)
+
+
   return (
     <>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container justify-content-center ">
-          <Link to="/" className="navbar-brand">NavBar</Link>
+          <Link to="/" className="navbar-brand"><img src="https://img.freepik.com/free-vector/bird-colorful-gradient-design-vector_343694-2506.jpg?size=50&ext=jpg" alt="" /></Link>
           <button
             className="navbar-toggler"
             type="button"
@@ -24,16 +29,16 @@ const Header = () => {
                 <NavLink to="/" className="nav-link active"> Home</NavLink>
               </li>
               <li className="nav-item">
-                <NavLink to="/about" className="nav-link" >About</NavLink>
+                <NavLink to="/about" className="nav-link" >About Us</NavLink>
               </li>
               <li className="nav-item">
-                <NavLink to="/contact" className="nav-link" >Contact</NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink to="/product" className="nav-link">Product</NavLink>
+                <NavLink to="/contact" className="nav-link" >Contact Us</NavLink>
               </li>
               <li className="nav-item">
                 <NavLink to="/cart" className="nav-link">Cart</NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink to="/cart" className="nav-link">Items:{itemSelector.length}</NavLink>
               </li>
             </ul>
             <nav className="navbar bg-body-tertiary">

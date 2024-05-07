@@ -1,92 +1,43 @@
-import React from "react";
-import HomeProduct from "../components/HomeProduct";
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import "../App.css";
+import { add } from "../Redux/CartSlice";
 
 const Home = () => {
+  const [products, setProducts] = useState([]);
+  const itemProduct=useDispatch();
+
+  const myProducts = async () => {
+    const dataItem = await fetch("https://fakestoreapi.com/products");
+    const response = await dataItem.json();
+    const data = setProducts(response);
+    console.log(data);
+    console.log(response);
+  };
+
+  useEffect(() => {
+    myProducts();
+  }, []);
+
+ 
+  const handleAdd=(items)=>{
+    itemProduct(add(items))
+  }
+
   return (
-    <div className="container-fluid">
-      <div id="carouselExampleCaptions" className="carousel slide">
-        <div className="carousel-indicators">
-          <button
-            type="button"
-            data-bs-target="#carouselExampleCaptions"
-            data-bs-slide-to={0}
-            className="active"
-            aria-current="true"
-            aria-label="Slide 1"
-          />
-          <button
-            type="button"
-            data-bs-target="#carouselExampleCaptions"
-            data-bs-slide-to={1}
-            aria-label="Slide 2"
-          />
-          <button
-            type="button"
-            data-bs-target="#carouselExampleCaptions"
-            data-bs-slide-to={2}
-            aria-label="Slide 3"
-          />
+    <div className="flex-container">
+      {products.map((items) => (
+        <div className="card" style={{ width: "18rem" }}>
+          <img src={items.image} className="card-img-top" alt="..." />
+          <div className="card-body">
+            <h4>{items.category}</h4>
+            <h4>${items.price}</h4>
+            <p className="card-text">{items.description}</p>
+          </div>
+          <button type="button" class="btn btn-primary" onClick={()=>handleAdd(items)}>Add to Cart</button>
         </div>
-        <div className="carousel-inner">
-          <div className="carousel-item active">
-            <img src="https://images.pexels.com/photos/45982/pexels-photo-45982.jpeg?auto=compress&cs=tinysrgb&w=900" className="d-block w-100" alt="..." />
-            <div className="carousel-caption d-none d-md-block">
-              <h5>First slide label</h5>
-              <p>
-                Some representative placeholder content for the first slide.
-              </p>
-            </div>
-          </div>
-          <div className="carousel-item">
-            <img src="https://images.pexels.com/photos/1082528/pexels-photo-1082528.jpeg?auto=compress&cs=tinysrgb&w=900" className="d-block w-100" alt="..." />
-            <div className="carousel-caption d-none d-md-block">
-              <h5>Second slide label</h5>
-              <p>
-                Some representative placeholder content for the second slide.
-              </p>
-            </div>
-          </div>
-          <div className="carousel-item">
-            <img src="https://images.pexels.com/photos/1127000/pexels-photo-1127000.jpeg?auto=compress&cs=tinysrgb&w=900" className="d-block w-100" alt="..." />
-            <div className="carousel-caption d-none d-md-block">
-              <h5>Third slide label</h5>
-              <p>
-                Some representative placeholder content for the third slide.
-              </p>
-            </div>
-          </div>
-          <div className="carousel-item">
-            <img src="https://images.pexels.com/photos/1639729/pexels-photo-1639729.jpeg?auto=compress&cs=tinysrgb&w=900" className="d-block w-100" alt="..." />
-            <div className="carousel-caption d-none d-md-block">
-              <h5>Fourth slide label</h5>
-              <p>
-                Some representative placeholder content for the fourth slide.
-              </p>
-            </div>
-          </div>
-        </div>
-        </div>
-        
-        <button
-          className="carousel-control-prev"
-          type="button"
-          data-bs-target="#carouselExampleCaptions"
-          data-bs-slide="prev"
-        >
-          <span className="carousel-control-prev-icon" aria-hidden="true" />
-          <span className="visually-hidden">Previous</span>
-        </button>
-        <button
-          className="carousel-control-next"
-          type="button"
-          data-bs-target="#carouselExampleCaptions"
-          data-bs-slide="next"
-        >
-          <span className="carousel-control-next-icon" aria-hidden="true" />
-          <span className="visually-hidden">Next</span>
-        </button>
-        <HomeProduct/>
-      </div>
+      ))}
+    </div>
   );
 };
 

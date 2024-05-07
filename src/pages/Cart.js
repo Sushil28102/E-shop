@@ -1,35 +1,36 @@
-import { UserContext } from '../context/UserContext';
-import React, { useContext} from "react";
+import React from 'react'
+import { useSelector } from "react-redux";
+import { useDispatch } from 'react-redux';
+import { remove } from '../Redux/CartSlice';
+import '../App.css'
 
 const Cart = () => {
-const cart=useContext(UserContext);
+
+  const cartSelector=useSelector((state)=>state.cart)
+  const itemDispatch=useDispatch()
+
+  const handleRemove=(id)=>{
+    itemDispatch(remove(id))
+  }
 
   return (
-    <div>
-     {
-      cart && cart.items.map((item)=>{
+    <div className="flex-container">
+    {
+      cartSelector.map((items)=>{
         return(
           <div className="card" style={{ width: "18rem" }}>
-            <img src={item.image} className="card-img-top" alt="..." />
-            <div className="card-body">
-              <h3 className="card-text">
-                {item.category}
-              </h3>
-              <h3 className="card-text">
-                {item.price}
-              </h3>
-              <h3 className="card-text">
-                {item.title}
-              </h3>
-              <p className="card-text">
-                {item.description}
-              </p>
-              <button type="button" class="btn btn-success">Buy Now</button>
-            </div>
+          <img src={items.image} className="card-img-top" alt="..." />
+          <div className="card-body">
+            <h4>{items.category}</h4>
+            <h4>${items.price}</h4>
+            <p className="card-text">{items.description}</p>
           </div>
+          <button type="button" class="btn btn-primary" onClick={()=>handleRemove(items.id)}>Remove to Cart</button>
+        </div>
         )
       })
-     }
+    }
+    
     </div>
   )
 }
